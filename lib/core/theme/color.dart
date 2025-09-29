@@ -9,14 +9,14 @@ class VColor {
   static const Color onPrimary = Color(0xFFffffff);
 
   // background element (card, container)
-  static const Color surface = Color(0xFFf7fbf1);
+  static const Color surface = Color(0xFFFFFFFF);
   static const Color onSurface = Color(0xFF181d17);
 
-  static const Color surfaceContainerLowest = Color(0xFFE0E0E0);
-  static const Color surfaceContainerLow = Color(0xFFCACACA);
-  static const Color surfaceContainer = Color(0xFF989898);
-  static const Color surfaceContainerHigh = Color(0xFF898989);
-  static const Color surfaceContainerHighest = Color(0xFF343434);
+  static const Color neutral5 = Color(0xFFE0E0E0);
+  static const Color neutral4 = Color(0xFFCACACA);
+  static const Color neutral3 = Color(0xFF989898);
+  static const Color neutral2 = Color(0xFF898989);
+  static const Color neutral1 = Color(0xFF343434);
 
   // semantic
   static const Color semantic1 = Color(0xFFFF4267);

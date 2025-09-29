@@ -14,10 +14,10 @@ const double radiusSuperLarge = 25.0;
 const double radiusMax = 30.0;
 
 const double marginSuperSmall = 5.0;
-const double marginSmall = 10.0;
-const double marginMedium = 14.0;
-const double marginLarge = 18.0;
-const double marginExtraLarge = 24.0;
+const double marginSmall = 12.0;
+const double marginMedium = 20.0;
+const double marginLarge = 24.0;
+const double marginExtraLarge = 32.0;
 const double marginViewTop = 30.0;
 
 const double iconSmall = 20;
