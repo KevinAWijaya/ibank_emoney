@@ -6,18 +6,45 @@ import 'package:ibank_emoney/core/constants/size.dart';
 import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
+import 'package:ibank_emoney/ui/auth/register_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
 import 'package:ibank_emoney/ui/widgets/text_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final textInputController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  bool get _isFilled => textInputController.text.isNotEmpty && passwordController.text.isNotEmpty;
+
+  @override
+  void initState() {
+    super.initState();
+    textInputController.addListener(_onChanged);
+    passwordController.addListener(_onChanged);
+  }
+
+  void _onChanged() => setState(() {});
+
+  @override
+  void dispose() {
+    textInputController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: _body()),
+          SliverToBoxAdapter(child: _body(context)),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Container(width: double.infinity, color: VColor.white),
@@ -29,7 +56,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _body() {
+  Widget _body(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: VColor.surface,
@@ -52,9 +79,9 @@ class LoginPage extends StatelessWidget {
             child: Image.asset('$imagePath/Circle Lock.png', height: 165, fit: BoxFit.contain),
           ),
           spaceVerticalSuperLarge,
-          VTextField(hint: "Text Input"),
+          VTextField(hint: "Text Input", controller: textInputController),
           spaceVerticalMedium,
-          VTextField(hint: "Password", suffixIcon: Icons.keyboard_arrow_down),
+          VTextField(hint: "Password", controller: passwordController, isObscure: true),
           spaceVerticalSmall,
           Align(
             alignment: AlignmentDirectional.centerEnd,
@@ -64,11 +91,12 @@ class LoginPage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: FilledButton(
-              onPressed: () {},
+              onPressed: _isFilled ? () {} : null,
               style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
                 padding: EdgeInsets.all(marginMedium),
                 backgroundColor: VColor.primary1,
+                disabledBackgroundColor: VColor.primary4,
               ),
               child: Text("Sign In", style: textBody1.copyWith(color: VColor.white)),
             ),
@@ -90,7 +118,9 @@ class LoginPage extends StatelessWidget {
               Text("Don't have an account?", style: GoogleFonts.poppins(fontSize: 12)),
               spaceHorizontalSmall,
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                },
                 child: Text("Sign Up", style: caption1.copyWith(color: VColor.primary1)),
               ),
             ],

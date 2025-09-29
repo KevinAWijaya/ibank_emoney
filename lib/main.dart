@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ibank_emoney/core/theme/theme.dart';
-import 'package:ibank_emoney/ui/auth/login.dart';
+import 'package:ibank_emoney/ui/auth/login_page.dart';
 
 void main() {
   runApp(const MainApp());

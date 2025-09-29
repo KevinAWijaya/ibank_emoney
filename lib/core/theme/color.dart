@@ -26,8 +26,16 @@ class VColor {
   static const Color semantic5 = Color(0xFFFB6B18);
 
   // shadow
-  static const Shadow dropShadowCard = Shadow(blurRadius: 30, offset: Offset(0, 4), color: Color.fromARGB(17, 53, 41, 183));
-  static const Shadow dropShadowCardSmall = Shadow(blurRadius: 30, offset: Offset(0, -5), color: Color.fromARGB(17, 53, 41, 183));
+  static const Shadow dropShadowCard = Shadow(
+    blurRadius: 30,
+    offset: Offset(0, 4),
+    color: Color.fromARGB(17, 53, 41, 183),
+  );
+  static const Shadow dropShadowCardSmall = Shadow(
+    blurRadius: 30,
+    offset: Offset(0, -5),
+    color: Color.fromARGB(17, 53, 41, 183),
+  );
 
   // another
   static const Color background = Color.fromARGB(255, 255, 255, 255);
