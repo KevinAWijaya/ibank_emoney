@@ -12,6 +12,7 @@ class VColor {
   static const Color surface = Color(0xFFFFFFFF);
   static const Color onSurface = Color(0xFF181d17);
 
+  static const Color neutral6 = Color(0xFFFFFFFF);
   static const Color neutral5 = Color(0xFFE0E0E0);
   static const Color neutral4 = Color(0xFFCACACA);
   static const Color neutral3 = Color(0xFF989898);
@@ -26,12 +27,12 @@ class VColor {
   static const Color semantic5 = Color(0xFFFB6B18);
 
   // shadow
-  static const Shadow dropShadowCard = Shadow(
+  static const BoxShadow dropShadowCard = BoxShadow(
     blurRadius: 30,
     offset: Offset(0, 4),
     color: Color.fromARGB(17, 53, 41, 183),
   );
-  static const Shadow dropShadowCardSmall = Shadow(
+  static const BoxShadow dropShadowCardSmall = BoxShadow(
     blurRadius: 30,
     offset: Offset(0, -5),
     color: Color.fromARGB(17, 53, 41, 183),
@@ -47,7 +48,7 @@ class VColor {
   static const Color blackOpacity = Color.fromARGB(20, 0, 0, 0);
 
   static const Color grey1 = Color(0xFFBFBFBF);
-  static const Color grey2 = Color.fromARGB(255, 169, 168, 168);
+  static const Color grey2 = Color(0xFF979797);
   static const Color grey3 = Color.fromARGB(255, 86, 86, 86);
   static const Color grey4 = Color.fromARGB(255, 52, 52, 52);
 

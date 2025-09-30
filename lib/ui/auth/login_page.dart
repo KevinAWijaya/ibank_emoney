@@ -6,8 +6,10 @@ import 'package:ibank_emoney/core/constants/size.dart';
 import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
+import 'package:ibank_emoney/ui/auth/forgot_password/forgot_input_page.dart';
 import 'package:ibank_emoney/ui/auth/register_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
+import 'package:ibank_emoney/ui/widgets/filled_button.dart';
 import 'package:ibank_emoney/ui/widgets/text_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -124,14 +126,20 @@ class _LoginPageState extends State<LoginPage> {
             validator: (value) => (value == null || value.length < 6) ? "Min 6 characters" : null,
           ),
           spaceVerticalSmall,
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: Text("Forget your password ?", style: caption2.copyWith(color: VColor.neutral4)),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPage()));
+            },
+            child: Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Text("Forget your password ?", style: caption2.copyWith(color: VColor.neutral4)),
+            ),
           ),
           spaceVerticalCustom(40),
           SizedBox(
             width: double.infinity,
-            child: FilledButton(
+            child: VFilledButton(
+              text: "Sign in",
               onPressed: _isFilled
                   ? () {
                       if (_formKey.currentState!.validate()) {
@@ -139,13 +147,6 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }
                   : null,
-              style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
-                padding: EdgeInsets.all(marginMedium),
-                backgroundColor: VColor.primary1,
-                disabledBackgroundColor: VColor.primary4,
-              ),
-              child: Text("Sign In", style: textBody1.copyWith(color: VColor.white)),
             ),
           ),
         ],

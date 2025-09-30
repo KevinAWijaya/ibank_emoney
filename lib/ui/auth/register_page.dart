@@ -8,6 +8,7 @@ import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 import 'package:ibank_emoney/ui/auth/login_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
+import 'package:ibank_emoney/ui/widgets/filled_button.dart';
 import 'package:ibank_emoney/ui/widgets/text_field.dart';
 
 import '../widgets/check_box.dart';
@@ -165,7 +166,8 @@ class _RegisterPageState extends State<RegisterPage> {
           spaceVerticalCustom(40),
           SizedBox(
             width: double.infinity,
-            child: FilledButton(
+            child: VFilledButton(
+              text: "Sign up",
               onPressed: _isFilled
                   ? () {
                       if (_formKey.currentState!.validate()) {
@@ -173,13 +175,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                     }
                   : null,
-              style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
-                padding: EdgeInsets.all(marginMedium),
-                backgroundColor: VColor.primary1,
-                disabledBackgroundColor: VColor.primary4,
-              ),
-              child: Text("Sign Up", style: textBody1.copyWith(color: VColor.white)),
             ),
           ),
         ],

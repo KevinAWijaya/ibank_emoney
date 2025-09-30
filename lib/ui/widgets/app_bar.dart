@@ -3,16 +3,26 @@ import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 
 class VAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const VAppBar({super.key, required this.title, this.textColor = VColor.onPrimary});
+  const VAppBar({super.key, required this.title, this.showBack = false, this.primaryTheme = true});
 
   final String title;
-  final Color textColor;
+  final bool showBack;
+  final bool primaryTheme;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: VColor.primary1,
-      title: Text(title, style: textTitle2.copyWith(color: textColor)),
+      backgroundColor: primaryTheme ? VColor.primary1 : VColor.background,
+      title: Text(title, style: textTitle2.copyWith(color: primaryTheme ? VColor.neutral6 : VColor.neutral1)),
+      titleSpacing: showBack ? 0 : NavigationToolbar.kMiddleSpacing,
+      leading: showBack
+          ? IconButton(
+              icon: const Icon(Icons.keyboard_arrow_left),
+              color: primaryTheme ? VColor.neutral6 : VColor.neutral1,
+              onPressed: () => Navigator.of(context).maybePop(),
+            )
+          : SizedBox.shrink(),
+      leadingWidth: showBack ? null : 0,
     );
   }
 
