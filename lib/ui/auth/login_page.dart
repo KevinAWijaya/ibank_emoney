@@ -18,26 +18,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final textInputController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
-  bool get _isFilled => textInputController.text.isNotEmpty && passwordController.text.isNotEmpty;
+  bool get _isFilled => phoneController.text.isNotEmpty && passwordController.text.isNotEmpty;
 
   @override
   void initState() {
     super.initState();
-    textInputController.addListener(_onChanged);
+    phoneController.addListener(_onChanged);
     passwordController.addListener(_onChanged);
   }
 
   void _onChanged() => setState(() {});
-
-  @override
-  void dispose() {
-    textInputController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,28 +74,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Image.asset('$imagePath/Circle Lock.png', height: 165, fit: BoxFit.contain),
           ),
           spaceVerticalSuperLarge,
-          VTextField(hint: "Text Input", controller: textInputController),
-          spaceVerticalMedium,
-          VTextField(hint: "Password", controller: passwordController, isObscure: true),
-          spaceVerticalSmall,
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: Text("Forget your password ?", style: caption2.copyWith(color: VColor.neutral4)),
-          ),
-          spaceVerticalCustom(40),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: _isFilled ? () {} : null,
-              style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
-                padding: EdgeInsets.all(marginMedium),
-                backgroundColor: VColor.primary1,
-                disabledBackgroundColor: VColor.primary4,
-              ),
-              child: Text("Sign In", style: textBody1.copyWith(color: VColor.white)),
-            ),
-          ),
+          _form(),
           spaceVerticalLarge,
           Align(
             alignment: Alignment.center,
@@ -124,6 +98,55 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text("Sign Up", style: caption1.copyWith(color: VColor.primary1)),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _form() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          VTextField(
+            hint: "Phone Number",
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            preffixText: "(+62)",
+            validator: (value) => (value == null || value.length < 9) ? "Enter valid phone" : null,
+          ),
+          spaceVerticalMedium,
+          VTextField(
+            hint: "Password",
+            controller: passwordController,
+            isObscure: true,
+            validator: (value) => (value == null || value.length < 6) ? "Min 6 characters" : null,
+          ),
+          spaceVerticalSmall,
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Text("Forget your password ?", style: caption2.copyWith(color: VColor.neutral4)),
+          ),
+          spaceVerticalCustom(40),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: _isFilled
+                  ? () {
+                      if (_formKey.currentState!.validate()) {
+                        // Submit
+                      }
+                    }
+                  : null,
+              style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
+                padding: EdgeInsets.all(marginMedium),
+                backgroundColor: VColor.primary1,
+                disabledBackgroundColor: VColor.primary4,
+              ),
+              child: Text("Sign In", style: textBody1.copyWith(color: VColor.white)),
+            ),
           ),
         ],
       ),

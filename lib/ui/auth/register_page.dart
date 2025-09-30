@@ -1,5 +1,5 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ibank_emoney/core/constants/constants.dart';
 import 'package:ibank_emoney/core/constants/size.dart';
@@ -10,6 +10,8 @@ import 'package:ibank_emoney/ui/auth/login_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
 import 'package:ibank_emoney/ui/widgets/text_field.dart';
 
+import '../widgets/check_box.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -18,9 +20,28 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+
   final nameController = TextEditingController();
-  final textInputController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
+
+  bool isChecked = false;
+  bool get _isFilled =>
+      nameController.text.isNotEmpty &&
+      phoneController.text.isNotEmpty &&
+      passwordController.text.isNotEmpty &&
+      isChecked;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(_onChanged);
+    phoneController.addListener(_onChanged);
+    passwordController.addListener(_onChanged);
+  }
+
+  void _onChanged() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -62,40 +83,8 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Image.asset('$imagePath/Circle Phone.png', height: 165, fit: BoxFit.contain),
           ),
           spaceVerticalSuperLarge,
-          VTextField(hint: "Name", controller: nameController),
-          spaceVerticalMedium,
-          VTextField(hint: "Text Input", controller: textInputController),
-          spaceVerticalMedium,
-          VTextField(hint: "Password", controller: passwordController, isObscure: true),
-          spaceVerticalSmall,
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: Text("Forget your password ?", style: caption2.copyWith(color: VColor.neutral4)),
-          ),
-          spaceVerticalCustom(40),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: () {},
-              style: FilledButton.styleFrom(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
-                padding: EdgeInsets.all(marginMedium),
-                backgroundColor: VColor.primary1,
-              ),
-              child: Text("Sign In", style: textBody1.copyWith(color: VColor.white)),
-            ),
-          ),
-          spaceVerticalLarge,
-          Align(
-            alignment: Alignment.center,
-            child: SvgPicture.asset(
-              '$iconPath/finger.svg',
-              width: 64,
-              height: 64,
-              colorFilter: const ColorFilter.mode(VColor.primary1, BlendMode.srcIn),
-            ),
-          ),
-          spaceVerticalLarge,
+          _form(),
+          spaceVerticalSuperLarge,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -108,6 +97,90 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Text("Sign In", style: caption1.copyWith(color: VColor.primary1)),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _form() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          VTextField(
+            hint: "Name",
+            controller: nameController,
+            validator: (value) => (value == null || value.isEmpty) ? "Name is required" : null,
+          ),
+          spaceVerticalMedium,
+          VTextField(
+            hint: "Phone Number",
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            preffixText: "(+62)",
+            validator: (value) => (value == null || value.length < 9) ? "Enter valid phone" : null,
+          ),
+          spaceVerticalMedium,
+          VTextField(
+            hint: "Password",
+            controller: passwordController,
+            isObscure: true,
+            validator: (value) => (value == null || value.length < 6) ? "Min 6 characters" : null,
+          ),
+          spaceVerticalMedium,
+          Row(
+            children: [
+              CustomCheckbox(
+                value: isChecked,
+                onChanged: (v) => setState(() => isChecked = v),
+                iconSize: 20,
+                activeBorderColor: VColor.primary1,
+                inactiveBorderColor: VColor.grey1,
+                borderWidth: 2,
+                checkColor: VColor.primary1,
+              ),
+              spaceHorizontalSmall,
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    style: textBody2.copyWith(color: VColor.neutral1),
+                    children: [
+                      const TextSpan(text: "By creating an account you agree to our "),
+                      TextSpan(
+                        text: "Term and Conditions",
+                        style: textTitle3.copyWith(color: VColor.primary1),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            debugPrint("Terms & Conditions clicked!");
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              spaceHorizontalLarge,
+            ],
+          ),
+          spaceVerticalCustom(40),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: _isFilled
+                  ? () {
+                      if (_formKey.currentState!.validate()) {
+                        // Submit
+                      }
+                    }
+                  : null,
+              style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radiusLarge))),
+                padding: EdgeInsets.all(marginMedium),
+                backgroundColor: VColor.primary1,
+                disabledBackgroundColor: VColor.primary4,
+              ),
+              child: Text("Sign Up", style: textBody1.copyWith(color: VColor.white)),
+            ),
           ),
         ],
       ),

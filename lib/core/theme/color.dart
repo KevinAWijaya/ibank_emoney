@@ -46,7 +46,7 @@ class VColor {
   static const Color whiteOpacitiy = Color.fromARGB(20, 255, 255, 255);
   static const Color blackOpacity = Color.fromARGB(20, 0, 0, 0);
 
-  static const Color grey1 = Color(0xFFEEEEEE);
+  static const Color grey1 = Color(0xFFBFBFBF);
   static const Color grey2 = Color.fromARGB(255, 169, 168, 168);
   static const Color grey3 = Color.fromARGB(255, 86, 86, 86);
   static const Color grey4 = Color.fromARGB(255, 52, 52, 52);
