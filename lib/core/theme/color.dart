@@ -49,13 +49,14 @@ class VColor {
 
   static const Color grey1 = Color(0xFFBFBFBF);
   static const Color grey2 = Color(0xFF979797);
-  static const Color grey3 = Color.fromARGB(255, 86, 86, 86);
-  static const Color grey4 = Color.fromARGB(255, 52, 52, 52);
+  static const Color grey3 = Color(0xFFECEBEB);
+  static const Color grey4 = Color(0xFFBCBCBC);
+  static const Color grey5 = Color(0xFFD1D1D1);
 
   static const Color grey1Opacity = Color.fromARGB(20, 186, 186, 186);
   static const Color grey2Opacity = Color.fromARGB(20, 122, 122, 122);
   static const Color grey3Opacity = Color.fromARGB(20, 86, 86, 86);
-  static const Color grey4Opacity = Color.fromARGB(20, 52, 52, 52);
+  static const Color grey4Opacity = Color.fromARGB(145, 188, 188, 188);
 
   static WidgetStateProperty<Color?> overlayColor({Color rippleColor = primary1, Color hoverColor = primary1}) {
     return WidgetStateProperty.resolveWith((Set<WidgetState> states) {

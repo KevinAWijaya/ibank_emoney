@@ -4,6 +4,7 @@ import 'package:ibank_emoney/core/constants/size.dart';
 import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
+import 'package:ibank_emoney/ui/menu/feature/branch_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
 
 class SearchTab extends StatefulWidget {
@@ -29,7 +30,14 @@ class _SearchTabState extends State<SearchTab> {
       padding: EdgeInsets.all(marginLarge),
       child: Column(
         children: [
-          _card("Branch", "Search for branch", "Illustration Branch.png", onTap: () {}),
+          _card(
+            "Branch",
+            "Search for branch",
+            "Illustration Branch.png",
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+            },
+          ),
           _card("Interest rate", "Search for interest rate", "Illustration Interest.png", onTap: () {}),
           _card("Exchange rate", "Search for exchange rate", "Illustration Exchange rate.png", onTap: () {}),
           _card("Exchange", "Exchange amount of money", "Illustration Exchange.png", onTap: () {}),

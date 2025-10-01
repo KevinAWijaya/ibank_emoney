@@ -12,7 +12,6 @@ class StackCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
 
-    // ✅ Lebar antara 400 - 450
     double maxWidth = screenWidth.clamp(350, 450);
 
     double w1 = maxWidth * 0.75;
