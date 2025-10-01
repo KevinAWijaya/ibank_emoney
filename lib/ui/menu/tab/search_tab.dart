@@ -5,9 +5,9 @@ import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 import 'package:ibank_emoney/ui/menu/feature/branch_page.dart';
+import 'package:ibank_emoney/ui/menu/feature/exchange_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/exhange_rate_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/interest_page.dart';
-import 'package:ibank_emoney/ui/menu/feature/language_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
 
 class SearchTab extends StatefulWidget {
@@ -62,7 +62,7 @@ class _SearchTabState extends State<SearchTab> {
             "Exchange amount of money",
             "Illustration Exchange.png",
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ExchangePage()));
             },
           ),
         ],
