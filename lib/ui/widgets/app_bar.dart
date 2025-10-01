@@ -3,11 +3,12 @@ import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 
 class VAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const VAppBar({super.key, required this.title, this.showBack = false, this.primaryTheme = true});
+  const VAppBar({super.key, required this.title, this.showBack = false, this.primaryTheme = true, this.onBackPressed});
 
   final String title;
   final bool showBack;
   final bool primaryTheme;
+  final VoidCallback? onBackPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,9 @@ class VAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               icon: const Icon(Icons.keyboard_arrow_left),
               color: primaryTheme ? VColor.neutral6 : VColor.neutral1,
-              onPressed: () => Navigator.of(context).maybePop(),
+              onPressed: onBackPressed ?? () => Navigator.of(context).maybePop(),
             )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
       leadingWidth: showBack ? null : 0,
     );
   }

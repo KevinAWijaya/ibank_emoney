@@ -16,12 +16,23 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
 
-  final List<NavItem> _items = [
-    NavItem(HomeTab(), "Home", "$iconPath/home.svg", "$iconPath/home_active.svg"),
-    NavItem(SearchTab(), "Search", "$iconPath/search.svg", "$iconPath/search.svg"),
-    NavItem(MessageTab(), "Message", "$iconPath/mail.svg", "$iconPath/mail_active.svg"),
-    NavItem(SettingTab(), "Setting", "$iconPath/setting.svg", "$iconPath/setting_active.svg"),
-  ];
+  final List<NavItem> _items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _items.addAll([
+      NavItem(HomeTab(), "Home", "$iconPath/home.svg", "$iconPath/home_active.svg"),
+      NavItem(
+        SearchTab(onBack: () => setState(() => _selectedIndex = 0)),
+        "Search",
+        "$iconPath/search.svg",
+        "$iconPath/search.svg",
+      ),
+      NavItem(MessageTab(), "Message", "$iconPath/mail.svg", "$iconPath/mail_active.svg"),
+      NavItem(SettingTab(), "Setting", "$iconPath/setting.svg", "$iconPath/setting_active.svg"),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
           SliverToBoxAdapter(child: _body(context)),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: Container(width: double.infinity, color: VColor.white),
+            child: Container(width: double.infinity, color: VColor.neutral6),
           ),
         ],
       ),

@@ -10,4 +10,4 @@ TextStyle textBody2 = GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w
 TextStyle textBody3 = GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500);
 
 TextStyle caption1 = GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600);
-TextStyle caption2 = GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500);
+TextStyle caption2 = GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500);
