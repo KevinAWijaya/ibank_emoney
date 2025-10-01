@@ -158,7 +158,7 @@ class _MapPageState extends State<MapPage> {
 
                           _mapController.move(point, 14);
                         },
-                        child: Container(
+                        child: Padding(
                           padding: EdgeInsets.symmetric(vertical: marginSmall),
                           child: Row(
                             children: [

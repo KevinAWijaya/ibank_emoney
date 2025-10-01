@@ -14,6 +14,7 @@ class VAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: primaryTheme ? VColor.primary1 : VColor.background,
+      surfaceTintColor: Colors.transparent,
       title: Text(title, style: textTitle2.copyWith(color: primaryTheme ? VColor.neutral6 : VColor.neutral1)),
       titleSpacing: showBack ? 0 : NavigationToolbar.kMiddleSpacing,
       leading: showBack
