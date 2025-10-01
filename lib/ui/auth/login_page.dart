@@ -8,6 +8,7 @@ import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 import 'package:ibank_emoney/ui/auth/forgot_password/forgot_input_page.dart';
 import 'package:ibank_emoney/ui/auth/register_page.dart';
+import 'package:ibank_emoney/ui/menu/navigation_page.dart';
 import 'package:ibank_emoney/ui/widgets/app_bar.dart';
 import 'package:ibank_emoney/ui/widgets/filled_button.dart';
 import 'package:ibank_emoney/ui/widgets/text_field.dart';
@@ -32,6 +33,9 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     phoneController.addListener(_onChanged);
     passwordController.addListener(_onChanged);
+
+    phoneController.text = "123123123";
+    passwordController.text = "123123123";
   }
 
   void _onChanged() => setState(() {});
@@ -143,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _isFilled
                   ? () {
                       if (_formKey.currentState!.validate()) {
-                        // Submit
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationPage()));
                       }
                     }
                   : null,
