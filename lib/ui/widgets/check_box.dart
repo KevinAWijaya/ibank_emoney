@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/color.dart';
 
-class CustomCheckbox extends StatelessWidget {
+class VCheckBox extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
   final double iconSize;
@@ -13,7 +13,7 @@ class CustomCheckbox extends StatelessWidget {
   final Color checkColor;
   final Duration animationDuration;
 
-  const CustomCheckbox({
+  const VCheckBox({
     super.key,
     required this.value,
     required this.onChanged,

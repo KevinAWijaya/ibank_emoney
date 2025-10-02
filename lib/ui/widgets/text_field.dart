@@ -13,6 +13,7 @@ class VTextField extends StatefulWidget {
     this.preffixText,
     this.validator,
     this.label,
+    this.readOnly = false,
   });
 
   final String? hint;
@@ -22,6 +23,7 @@ class VTextField extends StatefulWidget {
   final String? preffixText;
   final String? Function(String?)? validator;
   final String? label;
+  final bool readOnly;
 
   @override
   State<VTextField> createState() => _VTextFieldState();
@@ -60,6 +62,7 @@ class _VTextFieldState extends State<VTextField> {
           obscureText: _obscureText,
           style: textBody3.copyWith(color: VColor.neutral1),
           keyboardType: widget.keyboardType,
+          readOnly: widget.readOnly,
           decoration: InputDecoration(
             hint: widget.hint == null ? null : Text(widget.hint!, style: textBody3.copyWith(color: VColor.neutral4)),
             border: OutlineInputBorder(

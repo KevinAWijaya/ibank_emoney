@@ -132,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
           spaceVerticalMedium,
           Row(
             children: [
-              CustomCheckbox(
+              VCheckBox(
                 value: isChecked,
                 onChanged: (v) => setState(() => isChecked = v),
                 iconSize: 20,
