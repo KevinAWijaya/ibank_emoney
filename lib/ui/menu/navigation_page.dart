@@ -29,8 +29,18 @@ class _NavigationPageState extends State<NavigationPage> {
         "$iconPath/search.svg",
         "$iconPath/search.svg",
       ),
-      NavItem(MessageTab(), "Message", "$iconPath/mail.svg", "$iconPath/mail_active.svg"),
-      NavItem(SettingTab(), "Setting", "$iconPath/setting.svg", "$iconPath/setting_active.svg"),
+      NavItem(
+        MessageTab(onBack: () => setState(() => _selectedIndex = 0)),
+        "Message",
+        "$iconPath/mail.svg",
+        "$iconPath/mail_active.svg",
+      ),
+      NavItem(
+        SettingTab(onBack: () => setState(() => _selectedIndex = 0)),
+        "Setting",
+        "$iconPath/setting.svg",
+        "$iconPath/setting_active.svg",
+      ),
     ]);
   }
 
