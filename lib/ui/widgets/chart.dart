@@ -1,5 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ibank_emoney/core/constants/size.dart';
+import 'package:ibank_emoney/core/constants/space.dart';
+import 'package:ibank_emoney/core/theme/color.dart';
+import 'package:ibank_emoney/core/theme/style.dart';
 
 class BalanceChart extends StatelessWidget {
   final double balance;
@@ -11,24 +16,31 @@ class BalanceChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: marginLarge),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: VColor.neutral6,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 12, spreadRadius: 2, offset: const Offset(0, 4))],
+        boxShadow: [VColor.dropShadowCard],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Balance", style: TextStyle(fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text(
-            "${balance.toStringAsFixed(0)} $currency",
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.indigo),
+          Text("Balance", style: caption1),
+          RichText(
+            text: TextSpan(
+              style: GoogleFonts.poppins(fontSize: 32, fontWeight: FontWeight.w500, color: VColor.primary1),
+              children: [
+                TextSpan(text: balance.toStringAsFixed(0)),
+                TextSpan(
+                  text: " $currency",
+                  style: caption1.copyWith(color: VColor.grey2),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
+          spaceVerticalLarge,
           SizedBox(
-            height: 220,
+            height: 200,
             child: BarChart(
               BarChartData(
                 barGroups: _buildBarGroups(),
@@ -80,13 +92,13 @@ class BalanceChart extends StatelessWidget {
             fromY: d.negativeRed, // ensure negative values are included
             rodStackItems: [
               // Purple segment
-              BarChartRodStackItem(d.positivePink, d.positivePurple + d.positivePink, Colors.deepPurple),
+              BarChartRodStackItem(d.positivePink, d.positivePurple + d.positivePink, VColor.primary1),
               // Pink segment (stacked above purple)
-              BarChartRodStackItem(0, d.positivePink, Colors.yellow),
+              BarChartRodStackItem(0, d.positivePink, VColor.semantic7),
               // Red segment (stacked downward from 0)
-              if (d.negativeRed < 0) BarChartRodStackItem(0, d.negativeRed, Colors.red),
+              if (d.negativeRed < 0) BarChartRodStackItem(0, d.negativeRed, VColor.semantic6),
             ],
-            width: 14,
+            width: 8,
             borderRadius: BorderRadius.circular(6),
           ),
         ],
@@ -103,16 +115,3 @@ class BalanceData {
 
   BalanceData({required this.month, this.positivePurple = 0, this.positivePink = 0, this.negativeRed = 0});
 }
-
-
-// BalanceChart(
-//             balance = 1000,
-//             data = [
-//               BalanceData(month: "Jan", positivePurple: 20, positivePink: 10, negativeRed: -15),
-//               BalanceData(month: "Feb", positivePurple: 130, positivePink: 15, negativeRed: -20),
-//               BalanceData(month: "Mar", positivePurple: 125, positivePink: 12, negativeRed: -100),
-//               BalanceData(month: "Apr", positivePurple: 10, positivePink: 5, negativeRed: -12),
-//               BalanceData(month: "May", positivePurple: 28, positivePink: 8, negativeRed: -18),
-//               BalanceData(month: "Jun", positivePurple: 22, positivePink: 10, negativeRed: -15),
-//             ],
-//           ),

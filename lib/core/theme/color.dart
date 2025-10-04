@@ -25,12 +25,14 @@ class VColor {
   static const Color semantic3 = Color(0xFFFFAF2A);
   static const Color semantic4 = Color(0xFF52D5BA);
   static const Color semantic5 = Color(0xFFFB6B18);
+  static const Color semantic6 = Color(0xFFFF4267);
+  static const Color semantic7 = Color(0xFFFBB8FF);
 
   // shadow
   static const BoxShadow dropShadowCard = BoxShadow(
     blurRadius: 30,
     offset: Offset(0, 4),
-    color: Color.fromARGB(17, 53, 41, 183),
+    color: Color.fromARGB(35, 53, 41, 183),
   );
   static const BoxShadow dropShadowCardSmall = BoxShadow(
     blurRadius: 30,
