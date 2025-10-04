@@ -37,7 +37,7 @@ class VNavigationBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: marginSmall, vertical: 8),
               decoration: BoxDecoration(
                 color: isSelected ? VColor.primary1 : Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(radiusMax),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,

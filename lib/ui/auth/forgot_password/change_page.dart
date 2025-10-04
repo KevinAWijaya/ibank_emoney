@@ -10,7 +10,8 @@ import 'package:ibank_emoney/ui/widgets/text_field.dart';
 import '../../../core/theme/color.dart';
 
 class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage({super.key});
+  const ChangePasswordPage({super.key, this.fromProfile = false});
+  final bool fromProfile;
 
   @override
   State<ChangePasswordPage> createState() => _ChangePasswordPageState();
@@ -19,6 +20,7 @@ class ChangePasswordPage extends StatefulWidget {
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final _formKey = GlobalKey<FormState>();
 
+  final currentController = TextEditingController();
   final password1Controller = TextEditingController();
   final password2Controller = TextEditingController();
 
@@ -58,9 +60,20 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            if (widget.fromProfile) ...[
+              VTextField(
+                controller: currentController,
+                label: "Current Password",
+                hint: "Current Password",
+                isObscure: true,
+                validator: (value) => (value == null || value.length < 6) ? "Min 6 characters" : null,
+              ),
+              spaceVerticalMedium,
+            ],
             VTextField(
               controller: password1Controller,
               label: "Type your new password",
+              hint: "Type your new password",
               isObscure: true,
               validator: (value) => (value == null || value.length < 6) ? "Min 6 characters" : null,
             ),
@@ -68,6 +81,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             VTextField(
               controller: password2Controller,
               label: "Confirm password",
+              hint: "Confirm password",
               isObscure: true,
               validator: (value) => (value == null || password1Controller.text != password2Controller.text)
                   ? "Your password is not match"
@@ -79,25 +93,29 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               child: FilledButton(
                 onPressed: _isFilled
                     ? () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SuccessPage(
-                                image: "Illustration 1.png",
-                                description:
-                                    "You have successfully change password. Please use the new password when Sign in.",
-                                title: "Change password successfully!",
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => LoginPage()),
-                                  );
-                                },
+                        if (widget.fromProfile) {
+                          Navigator.pop(context);
+                        } else {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SuccessPage(
+                                  image: "Illustration 1.png",
+                                  description:
+                                      "You have successfully change password. Please use the new password when Sign in.",
+                                  title: "Change password successfully!",
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => LoginPage()),
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                            (route) => false,
-                          );
+                              (route) => false,
+                            );
+                          }
                         }
                       }
                     : null,
