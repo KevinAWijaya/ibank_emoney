@@ -28,7 +28,7 @@ class VClickableField extends StatelessWidget {
           child: GestureDetector(
             onTap: onTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(radiusMedium),
                 border: Border.all(color: VColor.neutral4, width: 1),

@@ -14,6 +14,7 @@ class VTextField extends StatefulWidget {
     this.validator,
     this.label,
     this.readOnly = false,
+    this.onChanged, // ✅ tambahan baru
   });
 
   final String? hint;
@@ -24,6 +25,7 @@ class VTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final String? label;
   final bool readOnly;
+  final Function(String)? onChanged; // ✅ tambahan baru
 
   @override
   State<VTextField> createState() => _VTextFieldState();
@@ -41,7 +43,7 @@ class _VTextFieldState extends State<VTextField> {
 
   @override
   void dispose() {
-    widget.controller.dispose();
+    // Jangan dispose controller eksternal
     super.dispose();
   }
 
@@ -63,6 +65,7 @@ class _VTextFieldState extends State<VTextField> {
           style: textBody3.copyWith(color: VColor.neutral1),
           keyboardType: widget.keyboardType,
           readOnly: widget.readOnly,
+          onChanged: widget.onChanged, // ✅ panggil di sini
           decoration: InputDecoration(
             hint: widget.hint == null ? null : Text(widget.hint!, style: textBody3.copyWith(color: VColor.neutral4)),
             border: OutlineInputBorder(

@@ -5,8 +5,10 @@ import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
 import 'package:ibank_emoney/ui/menu/feature/account_and_card/account_and_card_page.dart';
+import 'package:ibank_emoney/ui/menu/feature/mobile_prepaid/mobile_prepaid_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/tranfer/tranfer_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/transaction_report_page.dart';
+import 'package:ibank_emoney/ui/menu/feature/withdraw_page.dart';
 import 'package:ibank_emoney/ui/menu/tab/widgets/menu_grid.dart';
 import 'package:ibank_emoney/ui/menu/tab/widgets/stack_card.dart';
 import 'package:ibank_emoney/ui/widgets/notification_icon.dart';
@@ -101,11 +103,14 @@ class _HomeTabState extends State<HomeTab> {
       case 1:
         Navigator.push(context, MaterialPageRoute(builder: (context) => TranferPage()));
         break;
+      case 2:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => WithdrawPage()));
+        break;
+      case 3:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MobilePrepaidPage()));
+        break;
       case 7:
         Navigator.push(context, MaterialPageRoute(builder: (context) => TransactionReportPage()));
-        break;
-      default:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Placeholder()));
         break;
     }
   }
