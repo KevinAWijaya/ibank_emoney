@@ -98,7 +98,7 @@ class BalanceChart extends StatelessWidget {
               // Red segment (stacked downward from 0)
               if (d.negativeRed < 0) BarChartRodStackItem(0, d.negativeRed, VColor.semantic6),
             ],
-            width: 8,
+            width: 6,
             borderRadius: BorderRadius.circular(6),
           ),
         ],

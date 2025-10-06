@@ -4,6 +4,7 @@ import 'package:ibank_emoney/core/constants/size.dart';
 import 'package:ibank_emoney/core/constants/space.dart';
 import 'package:ibank_emoney/core/theme/color.dart';
 import 'package:ibank_emoney/core/theme/style.dart';
+import 'package:ibank_emoney/ui/menu/feature/account_and_card/account_and_card_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/tranfer/tranfer_page.dart';
 import 'package:ibank_emoney/ui/menu/feature/transaction_report_page.dart';
 import 'package:ibank_emoney/ui/menu/tab/widgets/menu_grid.dart';
@@ -95,7 +96,7 @@ class _HomeTabState extends State<HomeTab> {
   void onMenuTap(MenuItem item) {
     switch (item.id) {
       case 0:
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Placeholder()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AccountAndCardPage()));
         break;
       case 1:
         Navigator.push(context, MaterialPageRoute(builder: (context) => TranferPage()));
