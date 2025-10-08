@@ -170,7 +170,7 @@ class _TranferPageState extends State<TranferPage> {
                 ? (selectedTransaction == 2 ? VColor.semantic3 : VColor.primary1)
                 : VColor.neutral5,
             borderRadius: BorderRadius.all(Radius.circular(radiusLarge)),
-            boxShadow: [VColor.dropShadowCard],
+            boxShadow: [VColor.dropShadowCardSmall],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
