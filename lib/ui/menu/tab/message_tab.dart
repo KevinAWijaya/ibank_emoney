@@ -97,7 +97,7 @@ class _MessageTabState extends State<MessageTab> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(radiusLarge)),
             color: VColor.neutral6,
-            boxShadow: [VColor.dropShadowCard],
+            boxShadow: [VColor.dropShadowCardSmall],
           ),
           padding: EdgeInsets.all(12),
           child: Row(
